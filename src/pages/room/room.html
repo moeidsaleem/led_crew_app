@@ -1,0 +1,150 @@
+<!--
+  Generated template for the RoomsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    
+      <ion-navbar>
+        <ion-title>room</ion-title>
+      </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content padding>
+        <ion-slides pager #slider style="height: auto">
+            
+
+          <!-- SLIDE 1 -->
+
+              <ion-slide style="background-color: primary">
+                <h2>General Info</h2>
+                <ion-item >
+                    <ion-label floating>Room Type</ion-label>
+                    <ion-select [(ngModel)]="user?.dummyRoom.room_type">
+                      <ion-option value="office">Office</ion-option>
+                      <ion-option value="hall">hall</ion-option>
+                      <ion-option value="shop">shop</ion-option>
+                      <ion-option value="storage">Storage</ion-option>
+                      <ion-option value="toilet">Toilet</ion-option>
+                      <ion-option value="kitchen">Kitchen</ion-option>
+                      <ion-option value="others">Others</ion-option>
+                    </ion-select>
+                  </ion-item>
+                  <div padding>
+                      <button ion-button small color="warning" block (click)="slideNext()">Next</button>
+                    </div>
+              </ion-slide>
+
+
+              <!-- SLIDE 2 -->
+            
+              <ion-slide color="primary" >
+                  <h2>Existing Lights</h2>
+                  <ion-item>
+                      <ion-label floating>Existing Fixture</ion-label>
+                      <ion-select [(ngModel)]="user?.dummyRoom.existingLights.existing_fixture">
+                        <ion-option value="office">Office</ion-option>
+                        <ion-option value="hall">hall</ion-option>
+                        <ion-option value="shop">shop</ion-option>
+                        <ion-option value="storage">Storage</ion-option>
+                        <ion-option value="toilet">Toilet</ion-option>
+                        <ion-option value="kitchen">Kitchen</ion-option>
+                        <ion-option value="others">Others</ion-option>
+                      </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Number of Fixture</ion-label>
+                        <ion-input type="number" [(ngModel)]="user?.dummyRoom.existingLights.no_of_fixture"></ion-input>
+                      </ion-item>
+                    <ion-item>
+                        <ion-label floating>Existing Bulb</ion-label>
+                        <ion-select [(ngModel)]="user?.dummyRoom.existingLights.existing_bulb">
+                          <ion-option value="office">Office</ion-option>
+                          <ion-option value="hall">hall</ion-option>
+                          <ion-option value="shop">shop</ion-option>
+                          <ion-option value="storage">Storage</ion-option>
+                          <ion-option value="toilet">Toilet</ion-option>
+                          <ion-option value="kitchen">Kitchen</ion-option>
+                          <ion-option value="others">Others</ion-option>
+                        </ion-select>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label floating>Wattage</ion-label>
+                          <ion-select [(ngModel)]="user?.dummyRoom.existingLights.wattage">
+                            <ion-option value="office">Office</ion-option>
+                            <ion-option value="hall">hall</ion-option>
+                            <ion-option value="shop">shop</ion-option>
+                            <ion-option value="storage">Storage</ion-option>
+                            <ion-option value="toilet">Toilet</ion-option>
+                            <ion-option value="kitchen">Kitchen</ion-option>
+                            <ion-option value="others">Others</ion-option>
+                          </ion-select>
+                        </ion-item>
+                      <ion-item>
+                          <ion-label floating>Number of Bulbs</ion-label>
+                          <ion-input type="number" [(ngModel)]="user?.dummyRoom.existingLights.no_of_bulb"></ion-input>
+                        </ion-item>
+                        
+                        <ion-item text-center> 
+                          <ion-icon name="ios-camera" color="primary"> Image of fixture</ion-icon>
+                        </ion-item>
+                    <div padding>
+                        <button ion-button small color="warning" block (click)="slideNext()">Next</button>
+                      </div>
+              </ion-slide>
+
+
+
+              <!-- SLIDE 3 -->
+            
+              <ion-slide style="background-color: secondary">
+                <h2>Replacement Lights</h2>
+                <ion-item>
+                    <ion-label >Replace existing Fixture</ion-label>
+                    <ion-toggle checked="false" [(ngModel)]="user?.dummyRoom.replacement.replace"></ion-toggle>
+                  </ion-item>
+                  <ion-item *ngIf="user?.dummyRoom.replacement.replace ===true">
+                      <ion-label floating>Replacement Bulb Type</ion-label>
+                      <ion-select [(ngModel)]="user?.dummyRoom.replacement.bulb_type">
+                        <ion-option value="office">Office</ion-option>
+                        <ion-option value="hall">hall</ion-option>
+                        <ion-option value="shop">shop</ion-option>
+                        <ion-option value="storage">Storage</ion-option>
+                        <ion-option value="toilet">Toilet</ion-option>
+                        <ion-option value="kitchen">Kitchen</ion-option>
+                        <ion-option value="others">Others</ion-option>
+                      </ion-select>
+                    </ion-item>
+                    <ion-item *ngIf="user?.dummyRoom.replacement.replace ===true">
+                        <ion-label floating>Wattage</ion-label>
+                        <ion-input type="text" [(ngModel)]="user?.dummyRoom.replacement.wattage"></ion-input>
+                      </ion-item>
+                  
+                      <ion-item>
+                          <ion-label floating>Special Instructions</ion-label>
+                          <ion-input type="textarea"  [(ngModel)]="user?.dummyRoom.replacement.special_instruction"></ion-input>
+                        </ion-item>
+                        <div padding>
+                            <button ion-button small color="warning" (click)="slideNext()" block>Next</button>
+                          </div>
+              </ion-slide>
+    
+
+
+              <!-- SLIDE 4 -->
+              <ion-slide>
+                  <h2>Finalize</h2>
+                  <p>Thankyou for adding room Information. To save existing data and add more room select "Add Room", To go to evaluation Screen select "Finish", In order to edit slide left.</p>
+                  <div padding>
+                      <button ion-button small color="primary" block (click)="addRoom()">Add Room</button>
+                      <button ion-button small color="primary" block (click)="finish()">Finish</button>
+                    </div>
+    
+              </ion-slide>
+            
+            </ion-slides>
+    </ion-content>
+    

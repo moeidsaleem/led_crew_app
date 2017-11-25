@@ -1,0 +1,55 @@
+<!--
+  Generated template for the EvaluationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>evaluation</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content class="container">
+    <div class="header" >
+      <h1>Add Evalution</h1>
+      <p>Evaluate a facility by entering the data. </p>
+    </div>
+    <div class="content">
+        <ion-list>
+            <ion-item (click)="navCtrl.push('LocationInfoPage')">
+              <ion-avatar item-start>
+                  <ion-icon name="md-paper" color="primary"></ion-icon>
+                </ion-avatar>
+              <h2>Location Evaluation</h2>
+              <p>Enter Location information.</p>
+              <ion-icon clear item-end name="ios-arrow-dropright-outline" color="primary"></ion-icon>
+            </ion-item>
+            <!-- <ion-item-divider></ion-item-divider> -->
+            <ion-item (click)="navCtrl.push('RoomsPage')">
+                <ion-avatar item-start>
+                  <ion-icon name="ios-photos-outline" color="primary"></ion-icon>
+                </ion-avatar>
+                <h2>Rooms <small *ngIf="user?.dummyData.rooms"> ( {{user?.dummyData.rooms.length}} )</small></h2>
+                <p>Add room details.</p>
+                <ion-icon clear item-end name="ios-arrow-dropright-outline" color="primary"></ion-icon>
+                
+              </ion-item>
+              <ion-item-divider></ion-item-divider>              
+             
+                <!-- <ion-item-divider></ion-item-divider> -->
+                <button ion-button (click)="completeEval()">Complete Evaluation</button>
+                
+          </ion-list>  
+
+
+
+
+      </div>
+  </ion-content>
+  
+  

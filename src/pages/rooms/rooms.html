@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>Add Rooms</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content class="container">
+    <div class="header" >
+      <h1>Manage Rooms</h1>
+      <p> Add room data. </p>
+      <ion-avatar item-start (click)="navCtrl.push('RoomPage')">
+        <ion-icon name="add-circle" style="font-size: 120px;" color="primary"></ion-icon>
+      </ion-avatar>
+      <!-- <img src="./assets/img/light-bulb.svg" class="profile" (click)="goEvaluation()"/> -->
+      <div style="position:relative;top:70px;font-size:10px" > Click to Evaluate Facility</div>
+    </div>
+    <div class="content">
+      <!-- <h3>Evaluations</h3>
+      <p>Scroll down to see your recent evaluations provided  to the company.
+      
+      </p> -->
+    <!-- <button ion-button (click)="goProfile()">Profile</button> -->
+    <ion-list >
+        <ion-item *ngFor="let x of user?.dummyData.rooms;let i = index">
+          <ion-avatar item-start>
+            <img src="./assets/img/light-bulb.svg">
+          </ion-avatar>
+          <h2>Room {{i + 1}} </h2>
+          <p>Type:{{x.room_type}}</p>
+          <button ion-button clear item-end>View</button>
+          
+        </ion-item>
+      </ion-list>  
+  
+      <!-- <div class="social">
+        <ul>
+          <li>
+            <a href="#" class="zocial-facebook"></a>
+          </li>
+          <li>
+            <a href="#" class="zocial-twitter"></a>
+          </li>
+          <li>
+            <a href="#" class="zocial-instagram"> </a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </ion-content>
+  
+  

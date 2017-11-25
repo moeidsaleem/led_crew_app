@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Dashboard</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="container">
+  <div class="header" >
+    <h1>Richard Karsten</h1>
+    <h2>Sale Manager</h2>
+    <img src="./assets/img/light-bulb.svg" class="profile" (click)="goEvaluation()"/>
+    <div style="position:relative;top:70px;font-size:10px" > Click to Evaluate Facility</div>
+  </div>
+  <div class="content">
+    <!-- <h3>Evaluations</h3>
+    <p>Scroll down to see your recent evaluations provided  to the company.
+    
+    </p> -->
+  <button ion-button (click)="goProfile()">Profile</button>
+  <ion-list *ngIf="evaluations">
+      <ion-item *ngFor="let data of evaluations | async">
+        <ion-avatar item-start>
+          <img src="./assets/img/light-bulb.svg">
+        </ion-avatar>
+        <h2>{{data.location_info.business_name}} - <small>{{data.location_info.company_type}}</small></h2>
+        <p>Rooms: {{data.rooms.length }}</p>
+        <button ion-button clear item-end>View</button>
+        
+      </ion-item>
+    </ion-list>  
+
+    <!-- <div class="social">
+      <ul>
+        <li>
+          <a href="#" class="zocial-facebook"></a>
+        </li>
+        <li>
+          <a href="#" class="zocial-twitter"></a>
+        </li>
+        <li>
+          <a href="#" class="zocial-instagram"> </a>
+        </li>
+      </ul>
+    </div> -->
+  </div>
+</ion-content>
+
