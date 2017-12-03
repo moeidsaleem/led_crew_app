@@ -238,8 +238,8 @@ clearExistingFixture(){
 
   fetchProfile(){
     let x;
-    if(this._user || this.uid){
-      x=this.uDoc = this.afs.collection('employees').doc(this._user.uid || this.uid)       
+    if(this._user ){
+      x=this.uDoc = this.afs.collection('employees').doc(this._user.uid)       
 
     }else{
       x=this.uDoc = this.afs.collection('employees').doc('CvJ3dliJYSNGTS24NbmXv9GCIvz1')       
