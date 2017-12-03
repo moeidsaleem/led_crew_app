@@ -4,6 +4,7 @@ import { User } from '../../providers/providers';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { EvaluationPage } from '../evaluation/evaluation';
+import { ProfileSettingsPage } from '../profile-settings/profile-settings';
 
 
 
@@ -55,15 +56,18 @@ export class MainPage {
   };
 
   ionViewDidLoad() {
+    this.user.fetchProfile();
     console.log('ionViewDidLoad MainPage');
+    this.user.getBulbs();
+    
   }
 
 
   goEvaluation(){
-    this.navCtrl.push("EvaluationPage");
+    this.navCtrl.push("LocationInfoPage");
   }
   goProfile(){
-    this.navCtrl.push('ProfilePage');
+    this.navCtrl.push("ProfilePage");
   }
   changeMenu(menu) {
     // Disables all other sidemenus

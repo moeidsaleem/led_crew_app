@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>User Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="transparent-header" *ngIf="user._user">
+
+    <!-- <ion-list-header>
+      <ion-avatar item-start (click)="updateProfileImage()">
+        <img [src]="user._user?.avatar ? user.imageUrl : placeholderPicture">
+      </ion-avatar>
+      <p class="username">{{user._user?.name}}</p>
+      <p>Owner</p>
+    </ion-list-header> -->
+    <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + user._user?.cover +')'}"></div>
+    <span id="prfile-name">asd</span>
+    <div id="content">
+        <div id="profile-info" padding>
+          <img id="profile-image" [src]="user._user?.avatar">
+          <h3 id="profile-name">
+              <ion-item>
+                <ion-label floating>Full Name</ion-label>
+                <ion-input type="text" [(ngModel)]="user._user.name"></ion-input>
+              </ion-item></h3>
+              <h3 id="profile-name">
+                  <ion-item>
+                    <ion-label floating>Position</ion-label>
+                    <ion-input type="text" [(ngModel)]="user._user.position"></ion-input>
+                  </ion-item></h3>
+                  <h3 id="profile-name">
+                      <ion-item>
+                        <ion-label floating>Country</ion-label>
+                        <ion-input type="text" [(ngModel)]="user._user.country"></ion-input>
+                      </ion-item></h3>
+                      <h3 id="profile-name">
+                          <ion-item>
+                            <ion-label floating>DOB</ion-label>
+                            <ion-input type="date" [(ngModel)]="user._user.dob"></ion-input>
+                          </ion-item></h3>
+                          <h3 id="profile-name">
+                              <ion-item>
+                                <ion-label floating>Info</ion-label>
+                                <ion-input type="text" [(ngModel)]="user._user.info"></ion-input>
+                              </ion-item></h3>
+
+                      <h3 id="profile-name">
+                          <ion-item>
+                            <ion-label floating>Email</ion-label>
+                            <ion-input type="text" [(ngModel)]="user._user.email" disabled></ion-input>
+                          </ion-item></h3>
+
+                          <h3 id="profile-name">
+                              <ion-item>
+                                <ion-label floating>Password</ion-label>
+                                <ion-input type="password" [(ngModel)]="user._user.password" disabled></ion-input>
+                              </ion-item></h3>
+
+                              <button ion-button full (click)="updateProfile()">Update Profile</button>
+
+                        
+                        
+          <p>{{user._user?.position}} &bull; {{user._user?.state}}, {{user._user?.country}}</p>
+          <p class="profile-description">{{user._user?.info}}</p>
+          <!-- <button ion-button *ngIf="!following" small color="purple" (click)="follow()">Follow</button>
+          <button ion-button *ngIf="following" class="follow-button" small color="purple" (click)="follow()">Following<ion-icon name="checkmark"></ion-icon></button> -->
+        </div>
+        </div>
+  <!-- <ion-list no-border>
+    <ion-list-header>
+      General
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name='settings' item-start></ion-icon>
+      <ion-label>App Language</ion-label>
+      <ion-select [(ngModel)]="language">
+        <ion-option *ngFor="let language of languages" [value]="language">{{language}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-toggle [(ngModel)]="enableNotifications" (click)="toggleNotifications()"></ion-toggle>
+      <ion-label class="label"> Enable notifications </ion-label>
+      <ion-icon name='notifications' item-start></ion-icon>
+    </ion-item>
+  </ion-list> -->
+  <!-- <ion-list>
+    <ion-list-header>
+      Currency
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name='card' item-start></ion-icon>
+      <ion-label>Payment Method</ion-label>
+      <ion-select [(ngModel)]="paymentMethod">
+        <ion-option *ngFor="let method of paymentMethods" [value]="method">{{method}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-icon name='logo-usd' item-start></ion-icon>
+      <ion-label>Currency</ion-label>
+      <ion-select [(ngModel)]="currency">
+        <ion-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Other
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name='power' item-start></ion-icon>
+      <button ion-button (click)="logOut()" item-end>
+      Logout
+      </button>
+    </ion-item>
+  </ion-list> -->
+</ion-content>

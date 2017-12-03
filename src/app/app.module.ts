@@ -8,6 +8,7 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { CallNumber } from '@ionic-native/call-number';
 
 import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
@@ -24,6 +25,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AlertService } from '../providers/util/alert.service';
+import { ToastService } from '../providers/util/toast.service';
+import { CameraProvider } from '../providers/util/camera.provider';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -65,7 +69,7 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -77,7 +81,7 @@ export function provideSettings(storage: Storage) {
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule,
+    AngularFireAuthModule
 
   ],
   bootstrap: [IonicApp],
@@ -89,13 +93,18 @@ export function provideSettings(storage: Storage) {
     Items,
     User,
     Camera,
+    CallNumber,
     SplashScreen,
     StatusBar,
     AngularFireDatabase,
     NativeAudio,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AlertService,
+    CameraProvider,
+    ToastService
+    
   ]
 })  
 export class AppModule { }

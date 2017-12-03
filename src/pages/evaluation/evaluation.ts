@@ -83,7 +83,7 @@ export class EvaluationPage {
               return;
             }).then(()=>{
               
-              this.navCtrl.pop();
+              this.navCtrl.setRoot('MainPage');
               
             })
            

@@ -27,10 +27,12 @@
           <h2>Room {{i + 1}} </h2>
           <p>Type:{{x.room_type}}</p>
           <button ion-button clear item-end>View</button>
-          
         </ion-item>
       </ion-list>  
   
+      <button ion-button (click)="navCtrl.pop()" *ngIf="user?.dummyData.rooms.length ==1">Save</button>
+      
+
       <!-- <div class="social">
         <ul>
           <li>

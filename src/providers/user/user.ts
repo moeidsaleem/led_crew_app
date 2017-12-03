@@ -13,11 +13,17 @@ import { APP_ID_RANDOM_PROVIDER } from '@angular/core/src/application_tokens';
 
 
 export interface employee{
-  id:string,
+  uid:string,
   name:string,
   email:string,
   password:string,
-  position:string
+  position:string,
+  avatar:string,
+  cover:string,
+  country:string,
+  state:string,
+  dob:Date,
+  info:string
 }
 
 export interface evaluation{
@@ -58,62 +64,65 @@ export interface evaluation{
 
 @Injectable()
 export class User {
-  _user: any;
+  _user: employee;
+  _evaluations:any;
   uid;
 
 //dummy ID = CvJ3dliJYSNGTS24NbmXv9GCIvz1
 
-  
-  public dummyRoom= {
-    room_type:'',
-    existingLights:{
-      existing_fixture:'',
-      no_of_fixture:null,
-      existing_bulb:'',
-      wattage:'',
-      no_of_bulb:null,
-      img:''
-    },
-    replacement:{
-      replace:false,
-      bulb_type:'',
-      wattage:'',
-      special_instruction:'',
+wattages:any;
 
+
+/*  THE DATA */
+public dummyData={
+  location_info:{
+    business_name:'',
+    address:'',
+    utility:'',
+    type:'',
+    hours:'',
+    person:'',
+    phone:'',
+    date:''
+  },
+  rooms:[],
+  userid:this.uid || 'CvJ3dliJYSNGTS24NbmXv9GCIvz1'
+}
+
+public dummyRoom= {
+  room_type:'',
+  existingFixtures:[],
+
+}
+
+
+public dummyExistingFixture = {
+  existing_fixture:'',
+  no_of_fixture:null,
+  existing_bulb:'',
+  existingWattage:'',
+  no_of_bulb:null,
+  img:'http://cdn.home-designing.com/wp-content/uploads/2009/03/kids-room-design3.jpg',
+  replace:false,
+  replacement_bulb:'',
+  replacementWattage:'',
+  special_instruction:'',
     }
+  
 
-  }
- public dummyData={
-    location_info:{
-      business_name:'',
-      address:'',
-      utility:'',
-      type:'',
-      hours:'',
-      person:'',
-      phone:'',
-      date:''
-    },
-    rooms:[],
-    userid:this.uid || 'CvJ3dliJYSNGTS24NbmXv9GCIvz1'
 
-  }
 
   empCollection: AngularFirestoreCollection<employee>;
   evaluationCollection: AngularFirestoreCollection<any>;
-  
+  rDoc: AngularFirestoreDocument<any>;
+  uDoc: AngularFirestoreDocument<employee>;
+  roomsCollection: AngularFirestoreCollection<any>;
   constructor(private fb:AngularFireDatabase, private afs:AngularFirestore,public api: Api,private afAuth: AngularFireAuth) {
 
     this.empCollection = afs.collection<employee>('employees');
-    this.evaluationCollection = afs.collection('evaluations');
-
-
-    
-
-
+    this.evaluationCollection = afs.collection('evaluations');    
     
    }
-
 data;
 
 
@@ -136,31 +145,47 @@ clearEvaluation(){
   }
 
 }
+
+
 clearRoom(){
   this.dummyRoom= {
     room_type:'',
-    existingLights:{
-      existing_fixture:'',
-      no_of_fixture:null,
-      existing_bulb:'',
-      wattage:'',
-      no_of_bulb:null,
-      img:''
-    },
-    replacement:{
-      replace:false,
-      bulb_type:'',
-      wattage:'',
-      special_instruction:'',
+    existingFixtures:[]
+  };
 
-    }
-
+  //now clear Existing fixtures 
+  this.dummyExistingFixture ={
+    existing_fixture:'',
+    no_of_fixture:null,
+    existing_bulb:'',
+    existingWattage:'',
+    no_of_bulb:null,
+    img:'' ,
+    replace:false,
+    replacement_bulb:'',
+    replacementWattage:'',
+    special_instruction:'',
   }
 
 }
 
 
+/*  CLEAR EXISTING AND REPLACEMENT INDEPENDANTLY */
+clearExistingFixture(){
+  this.dummyExistingFixture = {
+    existing_fixture:'',
+    no_of_fixture:null,
+    existing_bulb:'',
+    existingWattage:'',
+    no_of_bulb:null,
+    img:'',
+    replace:false,
+    replacement_bulb:'',
+    replacementWattage:'',
+    special_instruction:'',
 
+  }
+}
 
    addEvalution(){
      //first we will get the data from service
@@ -173,7 +198,9 @@ clearRoom(){
       console.log(data);
       
      //now push the data to the firebase
-     this.evaluationCollection.add(data);
+    this.evaluationCollection.add(data).then((snap)=>{
+      console.log(snap);
+    });
        }
 
   /**
@@ -186,18 +213,68 @@ clearRoom(){
     .signInWithEmailAndPassword(accountInfo.email,accountInfo.password).then(resp=>{
       this.uid = resp.uid;
       console.log(resp.uid);
-    this.afs.collection('employees').doc(resp.uid).snapshotChanges().subscribe(res=>{
-      console.log(res.payload.data);
-    })
+      this.uDoc = this.afs.collection('employees').doc<employee>(resp.uid);
+      this.uDoc.snapshotChanges().subscribe(r=>{
+        this._loggedIn(r.payload.data());
+        console.log(this._user);
+        //now will fetch evaluations in the data
+        this.fetchEvaluations(100);
+        console.log(this._evaluations);
+
+        
+
+        
+        
+      })
+      
+    // this.afs.collection('employees').doc(resp.uid).snapshotChanges().subscribe(res=>{
+      
+    // })
     })
     return seq;
   }
 
 
-fetchEvaluations(){
+
+  fetchProfile(){
+    let x;
+    if(this._user || this.uid){
+      x=this.uDoc = this.afs.collection('employees').doc(this._user.uid || this.uid)       
+
+    }else{
+      x=this.uDoc = this.afs.collection('employees').doc('CvJ3dliJYSNGTS24NbmXv9GCIvz1')       
+    }
+     x = this.uDoc.valueChanges();
+     x.subscribe(res=>{
+       console.log(res);
+       this._loggedIn(res);
+     })
+  }
+
+fetchEvaluations(limit){
+  
+  this.evaluationCollection = this.afs.collection('evaluations', ref=>{
+    if(this._user || this.uid){
+      return ref.where('userid', '==',this._user.uid).limit(limit);
+      
+    }else{
+      return ref.where('userid', '==', 'CvJ3dliJYSNGTS24NbmXv9GCIvz1').limit(limit);
+    }
+  });
+  return this._evaluations = this.evaluationCollection.valueChanges();
 
 }
+updateProfile(data){
 
+  this.uDoc.update(data).then(res=>{
+     //after updating profile update local data
+     this.fetchProfile();
+  }, err=>{
+    console.log(err);
+    
+  })
+
+}
  
   /**
    * Send a POST request to our signup endpoint with the data
@@ -215,13 +292,19 @@ fetchEvaluations(){
         password:accountInfo.password,
         name:accountInfo.name,
         position:'',
-        id:res.uid
+        uid:res.uid,
+        avatar:'',
+        cover:'',
+        country:'',
+        state:'',
+        dob:null,
+        info:''
       }
       this.empCollection.doc(res.uid).set(data).then(res=>{
         console.log(res);
         this._user = data;
         console.log('user added');
-        this._loggedIn(accountInfo);
+        this._loggedIn(data);
         
       },err=>{
         console.log(err);
@@ -256,6 +339,7 @@ fetchEvaluations(){
    */
   logout() {
     this._user = null;
+    
   }
 
   userObservable(uid){
@@ -269,36 +353,18 @@ fetchEvaluations(){
     console.log(resp);
     this._user = resp;
   }
-  setLang(item){
-    this.userObservable(this._user.uid).update({
-      language:item.name
-    }).then(()=>{
-      this.userObservable(this._user.uid).valueChanges().subscribe(res=>{
-        this._user = res;
-        console.log(this._user);
-    })
 
-  });
+
+
+
+
+
+
+  getBulbs(){
+    return this.fb.list('bulbs').valueChanges();
+  }
+  getWattages(){
+    return this.fb.list('wattages').valueChanges();
   }
 
-
-
-
-  setLearn(item){
-    this.userObservable(this._user.uid).update({
-      learning:item.name
-    }).then(()=>{
-      this.userObservable(this._user.uid).valueChanges().subscribe(res=>{
-        this._user = res;
-        console.log(this._user);
-    })
-
-  });
-
-
-  }
-
-  getWord(){
-    return this.fb.object('languages/'+this._user.learning).valueChanges(); 
-  }
 }

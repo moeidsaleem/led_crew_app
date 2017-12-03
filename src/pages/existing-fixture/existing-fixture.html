@@ -1,0 +1,85 @@
+<!--
+  Generated template for the ExistingFixturePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>existingFixture</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding #content>
+  <h2>Existing Lights</h2>
+  <ion-item>
+      <ion-label floating>Existing Fixture</ion-label>
+      <ion-select [(ngModel)]="user?.dummyExistingFixture.existing_fixture">
+        <ion-option value="office">Office</ion-option>
+        <ion-option value="hall">hall</ion-option>
+        <ion-option value="shop">shop</ion-option>
+        <ion-option value="storage">Storage</ion-option>
+        <ion-option value="toilet">Toilet</ion-option>
+        <ion-option value="kitchen">Kitchen</ion-option>
+        <ion-option value="others">Others</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>Number of Fixture</ion-label>
+        <ion-input type="number" [(ngModel)]="user?.dummyExistingFixture.no_of_fixture"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Existing Bulb Type</ion-label>
+          <ion-input  disabled [(ngModel)]="user?.dummyExistingFixture.existing_bulb" (click)="openTypeModal('existing')">
+            <!-- <ion-option value="office">Office</ion-option> -->
+          </ion-input>
+        </ion-item>
+      <ion-item>
+          <ion-label floating>Wattage</ion-label>
+          <ion-select [(ngModel)]="user?.dummyExistingFixture.existingWattage">
+            <ion-option value="{{w}}" *ngFor="let w of wattages | async">{{w}}</ion-option>
+         
+          </ion-select>
+        </ion-item>
+      <ion-item>
+          <ion-label floating>Number of Bulbs</ion-label>
+          <ion-input type="number" [(ngModel)]="user?.dummyExistingFixture.no_of_bulb"></ion-input>
+        </ion-item>
+        
+        <ion-item text-center> 
+          <ion-icon name="ios-camera" color="primary" (click)="takePicture('gallery')"> Image of fixture</ion-icon>
+           <img *ngIf="user?.dummyExistingFixture.img" src="user?.dummyExistingFixture.img" />
+        </ion-item>
+        <!-- REPLACEMENT FIXTURE -->
+        <h2>Replacement Lights</h2>
+        <ion-item>
+            <ion-label >Replace existing Fixture</ion-label>
+            <ion-toggle checked="false" [(ngModel)]="user?.dummyExistingFixture.replace"></ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="user?.dummyExistingFixture.replace ===true">
+              <ion-label floating>Replacement Bulb Type</ion-label>
+              <ion-input  disabled [(ngModel)]="user?.dummyExistingFixture.replacement_bulb" (click)="openTypeModal('replacement')">
+                <!-- <ion-option value="office">Office</ion-option> -->
+              </ion-input>
+            </ion-item>
+            <ion-item *ngIf="user?.dummyExistingFixture.replace ===true">
+                <ion-label floating>Wattage</ion-label>
+                <ion-select [(ngModel)]="user?.dummyExistingFixture.replacementWattage">
+                <ion-option value="{{w}}" *ngFor="let w of wattages | async">{{w}}</ion-option>
+              </ion-select>
+              </ion-item>
+          
+              <ion-item>
+                  <ion-label floating>Special Instructions</ion-label>
+                  <ion-input type="textarea"  [(ngModel)]="user?.dummyExistingFixture.special_instruction"></ion-input>
+                </ion-item>
+
+
+    <div padding>
+        <button ion-button small color="primary" block (click)="saveExistingFixture()">Save</button>
+        <button ion-button small color="warning" block (click)="addAnother()">Add More</button>
+      </div>
+</ion-content>

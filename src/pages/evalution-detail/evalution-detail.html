@@ -1,18 +1,89 @@
 <!--
-  Generated template for the EvalutionDetailPage page.
+  Generated template for the ProfilePage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>evalutionDetail</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    
+      <ion-navbar color="primary">
+        <ion-title>Details</ion-title>
+        <ion-buttons end>
+          <button ion-button (click)="goSetting()" icon-only >
+          <ion-icon name="md-settings" color="light"></ion-icon>
+          </button>
+          </ion-buttons>  </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content padding class="transparent-header" *ngIf="evaluation">
+     
+        <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + user._user?.cover +')'}"></div>
+        <div id="content">
+          <div id="profile-info" padding>
+            <img id="profile-image" src="./assets/img/light-bulb.svg">
+            <h3 id="profile-name">{{evaluation.location_info.business_name}}</h3>
+            <p> &bull; {{evaluation.location_info.type}} &bull;  {{evaluation.location_info.utility}}</p>
+            <p class="profile-description">{{evaluation.location_info.address}}</p>
+            <button ion-button padding class="follow-button" color="purple" (click)="call(evaluation.location_info.phone)" icon-only><ion-icon name="md-call"></ion-icon> Call </button>
+            <button ion-button class="follow-button"  color="secondary" (click)="follow()"><ion-icon name="md-share"></ion-icon></button>
+          </div>
+          <hr/>
+          <ion-row class="profile-numbers">
+            <ion-col col-4>
+              <p>-</p>
+              <span>||</span>
+            </ion-col>
+            <ion-col col-4>
+              <p>Evaluation</p>
+              <span *ngIf="evaluations" color="secondary">{{location_info.rooms.length}}</span>
+            </ion-col>
+            <ion-col col-4>
+              <p>-</p>
+              <span>||</span>
+            </ion-col>
+          </ion-row>
+          <div id="posts" *ngIf="evaluations">
+            <ion-card *ngFor="let post of evaluation.rooms">
+              <ion-item>
+                <ion-avatar item-start icon-only>
+                  <img [src]="user?._user.avatar">
+                </ion-avatar>
+           
+                <h3 class="sticky">{{post.location_info.business_name}} - <small>( {{post.location_info.type}} )</small></h3>
+                <p>{{post.location_info.date}}</p>
+              </ion-item>
+              <!-- <img [src]="post.img" (click)="imageTapped(post)"> -->
+              <ion-card-content>
+                  <p><ion-icon name="ios-albums-outline"></ion-icon> <strong>{{post.rooms.length}} </strong> room<span *ngIf="post.rooms.length>0">s</span></p>
+                  <p><ion-icon name="ios-construct-outline"></ion-icon> <strong>{{post.location_info.type}} </strong> Type</p>
+                  <p><ion-icon name="ios-construct-outline"></ion-icon> <strong>{{post.location_info.utility}} </strong> Utility</p>
+                  
+              </ion-card-content>
+          
+              <ion-row>
+                <ion-col col-4>
+                  <button margin padding ion-button color="primary" clear small icon-left (click)="like(post)">
+                      <ion-icon name='ios-person-outline'></ion-icon>
+                      <!-- {{post.rooms.length}} Rooms |  -->
+                    <small>{{post.location_info.person}} </small>
+                    </button>
+                </ion-col>
+                <ion-col col-5>
+                  <button ion-button margin padding color="primary"  small icon-left (click)="call(post.location_info.phone)">
+                      <ion-icon name='md-call'></ion-icon>
+                       <small>{{post.location_info.phone}} </small> 
+                    </button>
+                </ion-col>
+                <ion-col col-3 align-self-center text-center>
+                  <p>
+                    {{post.timestamp}}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </div>
+        </div>
+      </ion-content>
+      

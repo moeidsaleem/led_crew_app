@@ -14,12 +14,65 @@
     
     
     <ion-content padding>
-        <ion-slides pager #slider style="height: auto">
-            
+
+    <div class="header" >
+        <h1>Add Room</h1>
+        <p>Add Fixture data to the room. </p>
+      </div>
+      <div class="content">
+          <ion-list>
+            <ion-item>
+              <ion-label floating >Room Type</ion-label>
+              <ion-select [(ngModel)]="user?.dummyRoom.room_type">
+                <ion-option value="office">Office</ion-option>
+                <ion-option value="hall">hall</ion-option>
+                <ion-option value="shop">shop</ion-option>
+                <ion-option value="storage">Storage</ion-option>
+                <ion-option value="toilet">Toilet</ion-option>
+                <ion-option value="kitchen">Kitchen</ion-option>
+                <ion-option value="others">Others</ion-option>
+              </ion-select>
+            </ion-item>
+                              <ion-item-divider></ion-item-divider>
+
+              <ion-item (click)="navCtrl.push('ExistingFixturePage')">
+                  <ion-avatar item-start>
+                    <ion-icon name="ios-albums-outline"  color="primary"></ion-icon>
+                  </ion-avatar>
+                  <h2>Fixture  <small *ngIf="user?.dummyRoom"> ( {{user?.dummyRoom.existingFixtures.length}} )</small></h2>
+                  <p>Add Existing Fixture details.</p>
+                  <ion-icon clear item-end name="ios-arrow-dropright-outline" color="primary"></ion-icon>
+                  
+                </ion-item>
+                
+
+                
+                <!-- <ion-item (click)="navCtrl.push('ReplacementFixturePage')">
+                    <ion-avatar item-start>
+                      <ion-icon name="ios-photos-outline" color="primary"></ion-icon>
+                    </ion-avatar>
+                    <h2>Replacement <small *ngIf="user?.dummyRoom"> ( {{user?.dummyRoom.replacementFixtures.length}} )</small></h2>
+                    <p>Add Replacement Fixture details.</p>
+                    <ion-icon clear item-end name="ios-arrow-dropright-outline" color="primary"></ion-icon>
+                    
+                  </ion-item> -->
+                <ion-item-divider></ion-item-divider>              
+               
+                  <!-- <ion-item-divider></ion-item-divider> -->
+                  <button ion-button (click)="showConfirm()">Save Room</button>
+                  
+            </ion-list>  
+  
+  
+  
+  
+        </div>
+        <!-- <ion-slides pager #slider style="height: auto">
+             -->
 
           <!-- SLIDE 1 -->
 
-              <ion-slide style="background-color: primary">
+              <!-- <ion-slide style="background-color: primary">
                 <h2>General Info</h2>
                 <ion-item >
                     <ion-label floating>Room Type</ion-label>
@@ -36,11 +89,11 @@
                   <div padding>
                       <button ion-button small color="warning" block (click)="slideNext()">Next</button>
                     </div>
-              </ion-slide>
+              </ion-slide> -->
 
 
               <!-- SLIDE 2 -->
-            
+<!--             
               <ion-slide color="primary" >
                   <h2>Existing Lights</h2>
                   <ion-item>
@@ -94,12 +147,12 @@
                     <div padding>
                         <button ion-button small color="warning" block (click)="slideNext()">Next</button>
                       </div>
-              </ion-slide>
+              </ion-slide> -->
 
 
 
               <!-- SLIDE 3 -->
-            
+<!--             
               <ion-slide style="background-color: secondary">
                 <h2>Replacement Lights</h2>
                 <ion-item>
@@ -131,11 +184,11 @@
                             <button ion-button small color="warning" (click)="slideNext()" block>Next</button>
                           </div>
               </ion-slide>
-    
+     -->
 
 
               <!-- SLIDE 4 -->
-              <ion-slide>
+              <!-- <ion-slide>
                   <h2>Finalize</h2>
                   <p>Thankyou for adding room Information. To save existing data and add more room select "Add Room", To go to evaluation Screen select "Finish", In order to edit slide left.</p>
                   <div padding>
@@ -145,6 +198,6 @@
     
               </ion-slide>
             
-            </ion-slides>
+            </ion-slides> -->
     </ion-content>
     

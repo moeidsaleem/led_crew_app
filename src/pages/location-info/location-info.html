@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>locationInfo</ion-title>
   </ion-navbar>
 
@@ -29,24 +29,19 @@
             <ion-item >
                 <ion-label floating>Utility Company</ion-label>
                 <ion-select [(ngModel)]="user?.dummyData.location_info.utility">
-                  <ion-option value="nes">NES</ion-option>
-                  <ion-option value="n64">Nintendo64</ion-option>
-                  <ion-option value="ps">PlayStation</ion-option>
-                  <ion-option value="genesis">Sega Genesis</ion-option>
-                  <ion-option value="saturn">Sega Saturn</ion-option>
-                  <ion-option value="snes">SNES</ion-option>
+                    <ion-option value="Alliant Energy">Alliant Energy,</ion-option>                    
+                    <ion-option value="Interstate Power and Light">Interstate Power and Light</ion-option>
+                    <ion-option value="Mid-America Energy">Mid-America Energy</ion-option>
                 </ion-select>
               </ion-item>
 
               <ion-item>
                   <ion-label floating>Building Type</ion-label>
                   <ion-select [(ngModel)]="user?.dummyData.location_info.type">
-                    <ion-option value="nes">NES</ion-option>
-                    <ion-option value="n64">Nintendo64</ion-option>
-                    <ion-option value="ps">PlayStation</ion-option>
-                    <ion-option value="genesis">Sega Genesis</ion-option>
-                    <ion-option value="saturn">Sega Saturn</ion-option>
-                    <ion-option value="snes">SNES</ion-option>
+                    <ion-option value="public">Public</ion-option>
+                    <ion-option value="store">Store</ion-option>
+                    <ion-option value="warehouse">Warehouse</ion-option>
+                    <ion-option value="residential">Residential</ion-option>
                   </ion-select>
                 </ion-item>
 
@@ -73,6 +68,6 @@
         </ion-list>
         
         <div padding>
-            <button ion-button block (click)="onSubmit()">Save</button>
+            <button ion-button block (click)="onSubmit()">Next</button>
           </div>
 </ion-content>

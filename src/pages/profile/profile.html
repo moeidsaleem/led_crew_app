@@ -6,13 +6,84 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>profile</ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+      <button ion-button (click)="goSetting()" icon-only >
+      <ion-icon name="md-settings" color="light"></ion-icon>
+      </button>
+      </ion-buttons>  </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
-</ion-content>
+<ion-content padding class="transparent-header" *ngIf="user._user">
+ 
+    <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + user._user?.cover +')'}"></div>
+    <div id="content">
+      <div id="profile-info" padding>
+        <img id="profile-image" [src]="user._user?.avatar">
+        <h3 id="profile-name">{{user._user?.name}}</h3>
+        <p>{{user._user?.position}} &bull; {{user._user?.state}}, {{user._user?.country}}</p>
+        <p class="profile-description">{{user._user?.info}}</p>
+        <!-- <button ion-button *ngIf="!following" small color="purple" (click)="follow()">Follow</button>
+        <button ion-button *ngIf="following" class="follow-button" small color="purple" (click)="follow()">Following<ion-icon name="checkmark"></ion-icon></button> -->
+      </div>
+      <hr/>
+      <ion-row class="profile-numbers">
+        <ion-col col-4>
+          <p>-</p>
+          <span>||</span>
+        </ion-col>
+        <ion-col col-4>
+          <p>Evaluation</p>
+          <span *ngIf="evaluations" color="secondary">{{evaluations.length}}</span>
+        </ion-col>
+        <ion-col col-4>
+          <p>-</p>
+          <span>||</span>
+        </ion-col>
+      </ion-row>
+      <div id="posts" *ngIf="evaluations">
+        <ion-card *ngFor="let post of evaluations">
+          <ion-item>
+            <ion-avatar item-start icon-only>
+              <img [src]="user?._user.avatar">
+            </ion-avatar>
+       
+            <h3 class="sticky">{{post.location_info.business_name}} - <small>( {{post.location_info.type}} )</small></h3>
+            <p>{{post.location_info.date}}</p>
+          </ion-item>
+          <!-- <img [src]="post.img" (click)="imageTapped(post)"> -->
+          <ion-card-content>
+              <p><ion-icon name="ios-albums-outline"></ion-icon> <strong>{{post.rooms.length}} </strong> room<span *ngIf="post.rooms.length>0">s</span></p>
+              <p><ion-icon name="ios-construct-outline"></ion-icon> <strong>{{post.location_info.type}} </strong> Type</p>
+              <p><ion-icon name="ios-construct-outline"></ion-icon> <strong>{{post.location_info.utility}} </strong> Utility</p>
+              
+          </ion-card-content>
+      
+          <ion-row>
+            <ion-col col-4>
+              <button margin padding ion-button color="primary" clear small icon-left (click)="like(post)">
+                  <ion-icon name='ios-person-outline'></ion-icon>
+                  <!-- {{post.rooms.length}} Rooms |  -->
+                <small>{{post.location_info.person}} </small>
+                </button>
+            </ion-col>
+            <ion-col col-5>
+              <button ion-button margin padding color="primary"  small icon-left (click)="call(post.location_info.phone)">
+                  <ion-icon name='md-call'></ion-icon>
+                   <small>{{post.location_info.phone}} </small> 
+                </button>
+            </ion-col>
+            <ion-col col-3 align-self-center text-center>
+              <p>
+                {{post.timestamp}}
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>
+    </div>
+  </ion-content>
+  

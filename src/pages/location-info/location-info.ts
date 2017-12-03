@@ -27,7 +27,7 @@ export class LocationInfoPage {
       duration:1200
     })
     b.present();
-    this.navCtrl.pop();
+    this.navCtrl.push('EvaluationPage');
     //this.user.dummyData.location_info = this.location_data;
   }
   ionViewDidLoad() {
