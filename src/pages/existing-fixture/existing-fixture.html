@@ -14,7 +14,21 @@
 
 
 <ion-content padding #content>
+    <ion-item>
+        <ion-label floating >Room Type</ion-label>
+        <ion-select [(ngModel)]="user?.dummyRoom.room_type">
+          <ion-option value="office">Office</ion-option>
+          <ion-option value="hall">hall</ion-option>
+          <ion-option value="shop">shop</ion-option>
+          <ion-option value="storage">Storage</ion-option>
+          <ion-option value="toilet">Toilet</ion-option>
+          <ion-option value="kitchen">Kitchen</ion-option>
+          <ion-option value="others">Others</ion-option>
+        </ion-select>
+      </ion-item>
   <h2>Existing Lights</h2>
+ 
+  
   <ion-item>
       <ion-label floating>Existing Fixture</ion-label>
       <ion-select [(ngModel)]="user?.dummyExistingFixture.existing_fixture">

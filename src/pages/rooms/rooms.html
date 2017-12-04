@@ -7,7 +7,7 @@
     <div class="header" >
       <h1>Manage Rooms</h1>
       <p> Add room data. </p>
-      <ion-avatar item-start (click)="navCtrl.push('RoomPage')">
+      <ion-avatar item-start (click)="navCtrl.push('ExistingFixturePage')">
         <ion-icon name="add-circle" style="font-size: 120px;" color="primary"></ion-icon>
       </ion-avatar>
       <!-- <img src="./assets/img/light-bulb.svg" class="profile" (click)="goEvaluation()"/> -->
@@ -30,7 +30,7 @@
         </ion-item>
       </ion-list>  
   
-      <button ion-button (click)="navCtrl.pop()" *ngIf="user?.dummyData.rooms.length ==1">Save</button>
+      <button ion-button (click)="navCtrl.setRoot('EvaluationPage')" *ngIf="user?.dummyData.rooms.length ==1">Save</button>
       
 
       <!-- <div class="social">

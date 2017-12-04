@@ -73,7 +73,7 @@ bulbs:any;
     this.getToast('Existing Fixture Added!',1200).present();
 
     //goBack 
-    this.navCtrl.pop();
+    this.navCtrl.push('RoomPage');
   }
 
 

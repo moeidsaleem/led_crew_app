@@ -63,7 +63,7 @@ export class RoomPage {
             this.addRoom();
             //clear room data 
             this.user.clearRoom();
-            this.navCtrl.popTo('RoomsPage');
+            this.navCtrl.setRoot('RoomsPage');
             
           }
         }
