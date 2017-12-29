@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 import { EvaluationPage } from '../evaluation/evaluation';
 import { ProfileSettingsPage } from '../profile-settings/profile-settings';
-
+import { TabsPage } from '../tabs/tabs'
 
 
 interface Employee{
@@ -62,6 +62,25 @@ export class MainPage {
     
   }
 
+
+  getDate(x){
+    let date= new Date(x);
+    let today = new Date();
+    let months = today.getMonth() - date.getMonth();
+    let days = today.getDay() - date.getDay();
+    let years = today.getFullYear() - date.getFullYear();
+    //console.log(months);
+    if(years>0){
+      return years + ' Year ago';
+    }else if(years== 0 && months>0){
+       return months + ' months ago.'    
+    }else if(years==0 && months==0){
+      
+      return days + ' days ago';
+    }
+
+
+  }
 
   goEvaluation(){
     this.navCtrl.push("LocationInfoPage");

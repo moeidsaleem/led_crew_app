@@ -1,30 +1,33 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>Dashboard</ion-title>
+<ion-header  style="background-color:white">
+  <ion-navbar >
+      <ion-buttons left>
+          <button ion-button icon-only menuToggle><ion-icon name="menu"></ion-icon></button>
+        </ion-buttons>
+    <ion-title style="font-style:italic">Dashboard</ion-title>
     
   </ion-navbar>
 </ion-header>
 <ion-content class="container">
   <div class="header" *ngIf="user._user">
-    <h1>{{user._user.name}}</h1>
-    <h2>{{user._user.position}} - <small>{{user._user.country}}</small></h2>
-    <img src="./assets/img/light-bulb.svg" class="profile" (click)="goEvaluation()"/>
-    <div style="position:relative;top:70px;font-size:10px" > Click to Evaluate Facility</div>
-  </div>
+      <img src="{{user._user.avatar}}" class="profile" (click)="goProfile()"/>
+    <h1>{{user._user.name}} <h4 class="h4x"> {{user._user.country}}</h4></h1>
+   </div>
+   <hr class="breakline">
+   <button ion-button (click)="goEvaluation()">Make Evaluation</button>
+
   <div class="content">
-    <!-- <h3>Evaluations</h3>
-    <p>Scroll down to see your recent evaluations provided  to the company.
+    <h3 class="bannerx">Previous evaluations</h3>
+    <p class="bannerx-text">Scroll down to see your recent evaluations provided  to the company.
     
-    </p> -->
-  <button ion-button (click)="goProfile()">Profile</button>
+    </p>
   <ion-list *ngIf="evaluations">
-      <ion-item *ngFor="let data of evaluations | async">
+      <ion-item *ngFor="let data of evaluations | async" class="itemx">
         <ion-avatar item-start>
           <img src="./assets/img/light-bulb.svg">
         </ion-avatar>
         <h2>{{data.location_info.business_name}}</h2>
-        <p><ion-icon name="ios-albums-outline"></ion-icon> {{data.rooms.length }} Room</p>
-        <button ion-button clear item-end (click)="navCtrl.push('EvalutionDetailPage',data)">View</button>
+        <p><ion-icon name="ios-albums-outline"></ion-icon>  <small>{{data.location_info.person}}</small></p>
+        <button ion-button clear item-end (click)="navCtrl.push('EvalutionDetailPage',data)">{{getDate(data.location_info.date) }}</button>
         
       </ion-item>
     </ion-list>  

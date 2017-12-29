@@ -6,29 +6,34 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>locationInfo</ion-title>
+  <ion-navbar >
+      <ion-buttons left>
+          <button ion-button icon-only menuToggle><ion-icon name="menu"></ion-icon></button>
+        </ion-buttons>
+    <ion-title class="titlex" text-center style="text-decoration:italic;font-size:2px;"><small>Evaluation - Location Info</small></ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="content">
 
-    <ion-list>
+
+  <h4 class="h4x">Location Info</h4>
+  <ion-list>
         
-          <ion-item>
-            <ion-label floating>Business Name</ion-label>
-            <ion-input type="text" [(ngModel)]="user?.dummyData.location_info.business_name"></ion-input>
+          <ion-item >
+            <ion-label id="labelx" stacked>Business Name</ion-label>
+            <ion-input class="text-input" placeholder="Enter Your business Name..." type="text" [(ngModel)]="user?.dummyData.location_info.business_name"></ion-input>
           </ion-item>
 
           <ion-item>
-              <ion-label floating>Address</ion-label>
-              <ion-input type="textarea" [(ngModel)]="user?.dummyData.location_info.address"></ion-input>
+              <ion-label id="labelx" stacked>Full address with Zip Code</ion-label>
+              <ion-input class="text-input" placeholder="Enter your full address..." type="textarea" [(ngModel)]="user?.dummyData.location_info.address"></ion-input>
             </ion-item>
 
             <ion-item >
-                <ion-label floating>Utility Company</ion-label>
-                <ion-select [(ngModel)]="user?.dummyData.location_info.utility">
+                <ion-label id="labelx" stacked>Utility Company</ion-label>
+                <ion-select class="text-input"  [(ngModel)]="user?.dummyData.location_info.utility">
                     <ion-option value="Alliant Energy">Alliant Energy,</ion-option>                    
                     <ion-option value="Interstate Power and Light">Interstate Power and Light</ion-option>
                     <ion-option value="Mid-America Energy">Mid-America Energy</ion-option>
@@ -36,8 +41,8 @@
               </ion-item>
 
               <ion-item>
-                  <ion-label floating>Building Type</ion-label>
-                  <ion-select [(ngModel)]="user?.dummyData.location_info.type">
+                  <ion-label id="labelx" stacked>Building Type</ion-label>
+                  <ion-select class="text-input"  [(ngModel)]="user?.dummyData.location_info.type" [placeholder]="asd">
                     <ion-option value="public">Public</ion-option>
                     <ion-option value="store">Store</ion-option>
                     <ion-option value="warehouse">Warehouse</ion-option>
@@ -46,28 +51,28 @@
                 </ion-item>
 
                 <ion-item>
-                    <ion-label floating>Working Hours</ion-label>
-                    <ion-input type="text" [(ngModel)]="user?.dummyData.location_info.hours"></ion-input>
+                    <ion-label id="labelx" stacked>Working Hours</ion-label>
+                    <ion-input class="text-input" placeholder="Enter Working Hours..." type="text" [(ngModel)]="user?.dummyData.location_info.hours"></ion-input>
                   </ion-item>
                 
                 <ion-item>
-                    <ion-label floating>Contact Person</ion-label>
-                    <ion-input type="text" [(ngModel)]="user?.dummyData.location_info.person"></ion-input>
+                    <ion-label id="labelx" stacked>Contact Person</ion-label>
+                    <ion-input class="text-input" placeholder="Enter Contact Person..." type="text" [(ngModel)]="user?.dummyData.location_info.person"></ion-input>
                   </ion-item>
 
                   <ion-item>
-                      <ion-label floating>Person Phone Number</ion-label>
-                      <ion-input type="number" [(ngModel)]="user?.dummyData.location_info.phone"></ion-input>
+                      <ion-label id="labelx" stacked>Person Phone Number</ion-label>
+                      <ion-input class="text-input" placeholder="Enter Contact Person's Number..." type="number" [(ngModel)]="user?.dummyData.location_info.phone"></ion-input>
                     </ion-item>
         
           <ion-item>
-            <ion-label>Date</ion-label>
-            <ion-input type="date" [(ngModel)]="user?.dummyData.location_info.date"></ion-input>
+            <ion-label stacked id="labelx">Date</ion-label>
+            <ion-input class="text-input" type="date" placeholder="enter date" [(ngModel)]="user?.dummyData.location_info.date"></ion-input>
           </ion-item>
         
         </ion-list>
         
-        <div padding>
+        <div padding *ngIf="user.dummyData.location_info.business_name && user.dummyData.location_info.date">
             <button ion-button block (click)="onSubmit()">Next</button>
           </div>
 </ion-content>

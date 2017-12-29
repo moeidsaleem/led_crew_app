@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, Content, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Slides, ToastController, Content, LoadingController } from 'ionic-angular';
 import { User } from '../../providers/user/user';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { Camera ,CameraOptions} from '@ionic-native/camera';
@@ -17,6 +17,14 @@ import { Camera ,CameraOptions} from '@ionic-native/camera';
 })
 export class ExistingFixturePage {
 bulbs:any;
+pageid:any;
+
+existingx:boolean;
+replacementx:boolean;
+generalx:boolean;
+
+
+
   constructor(public camera:Camera,private loading:LoadingController,private toast:ToastController,public modalCtrl:ModalController,
     public user:User,public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -25,6 +33,11 @@ bulbs:any;
 
   ionViewDidLoad() {
     this.wattages = this.user.getWattages();
+  //  this.pageid = this.navCtrl.getActive().id.toString();
+  //this.pageid ='a';
+  this.generalx =true;
+  this.replacementx  =false;
+  this.existingx =false;
     console.log('ionViewDidLoad ExistingFixturePage');
     let l = this.loading.create();
     l.present();
@@ -34,6 +47,7 @@ bulbs:any;
    }, 1200);
    
   }
+
 
   
   addAnother(){
@@ -50,7 +64,7 @@ bulbs:any;
       loader.dismiss();
        //generate a toast
     this.getToast(' Fixture Added!',900).present();
-    
+    this.goToSlide(0, 'general');
     },1200);
     
       
@@ -109,6 +123,49 @@ takePicture(source){
    });
 }
 
+// Slider functions
+ // Slider methods
+ @ViewChild('slider') slider: Slides;
+//  @ViewChild('innerSlider') innerSlider: Slides;
+
+
+ slideNext(page) {
+  this.slider.slideNext();
+  this.checkk(page);
+}
+
+slidePrevious() {
+  this.slider.slidePrev();
+}
+goToSlide(x,page) {
+  this.slider.slideTo(x);
+   this.checkk(page);
+}
+
+checkk(value){
+  console.log(value);
+
+if(value =='general'){
+  this.generalx = true;
+  this.existingx =false;
+  this.replacementx = false;
+}else if(value == 'existing'){
+  this.generalx = false;
+  this.existingx =true;
+  this.replacementx = false;
+}else if(value =='replacement'){
+  this.generalx = false;
+  this.existingx =false;
+  this.replacementx = true;
+}else if(value =='final'){
+  this.generalx = false;
+  this.existingx =false;
+  this.replacementx = false;
+}
+ 
+  
+}
+
 /* Extra funtions */
 getToast(msg, duration){
   return this.toast.create({
@@ -116,4 +173,8 @@ getToast(msg, duration){
     duration:duration
   });
 }
+
+
+
+
 }

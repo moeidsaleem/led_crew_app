@@ -43,8 +43,8 @@ page-room {
       }
     }
     .content {
-      background: #ececec;
-      color: #222b21;
+      background-color:rgb(74, 182, 121);
+      color: #fff;
       padding: 75px 0 0 0;
       text-align: center;
       //height: auto;
@@ -90,6 +90,86 @@ page-room {
       background: #3F729B;
       display: block;
     }
+
+    
+  .topBtn{
+      font-size: 18px;
+      position: relative;
+      right: 24px;
+      border-radius: 42px;
+      border:3px; 
+      border-style: solid;
+      
+  }
+  .xtopBtn{
+      font-size: 90%;
+      position: relative;
+      right: 22px;
+  }
+  .titlex{
+  font-size:1px;
+  color:red;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+  }
+  .h4x{
+      font-size:12px;
+      color:white;
+      background-color:#214629;
+      text-align: center;
+      padding:2px;
+      font-style: italic;
+      border:dotted;
+      border-color:#1f3f26
+  }
+  .item-md,.item-ios{
+  border-radius: 12px;
+  background-color: #397268;
+  margin-bottom:7px;
+  }
+  #labelx, .label-md, .label-ios{
+      color:white;
+  }
+  .input-md, .input-ios{
+      color:black;
+      text-justify: auto;
+      background-color:rgba(255,255,255,1);
+      border-radius: 40px;
+      padding:2px;
+      margin:12px;
+  
+  }
+  .text-input::-moz-placeholder {
+      color: rgba(0, 0, 0, 0.5);
+      font-size:17px;
+      font-style: italic;
+      position:relative;
+      left:20px;
+  }
+  
+  .text-input:-ms-input-placeholder {
+      color: rgba(0, 0, 0, 0.5);
+      font-size:17px;
+      font-style: italic;
+      position:relative;
+      left:20px;
+  }
+  
+  .text-input::-webkit-input-placeholder {
+      color: rgba(0, 0, 0, 0.5);
+      font-size:17px;
+      font-style: italic;
+      position:relative;
+      left:20px;
+  }
+  .select-md, .select-ios{
+      color:white;
+      font-size:12px;
+  
+  }
+  
+  
+    
   }
   
   

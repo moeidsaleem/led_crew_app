@@ -8,16 +8,12 @@ import { FirstRunPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
+  template: `<ion-menu [content]="content" >
 
-    <ion-content>
+
+    <ion-content class="menux">
       <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="side-item">
           {{p.title}}
         </button>
       </ion-list>
@@ -32,18 +28,10 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
-    { title: 'Login', component: 'LoginPage' },
-    { title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
-    { title: 'Menu', component: 'MenuPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Search', component: 'SearchPage' },
-    { title: 'Learn', component: 'LearnPage' }
+    { title: 'Dashboard', component: 'MainPage' },
+    { title: 'Profile', component: 'ProfilePage' },
+    { title: 'Make Evaluation', component: 'LocationInfoPage' },
+    { title: 'Logout', component: 'WelcomePage' }
     
   ]
 

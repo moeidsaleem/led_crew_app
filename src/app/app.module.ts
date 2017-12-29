@@ -28,6 +28,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AlertService } from '../providers/util/alert.service';
 import { ToastService } from '../providers/util/toast.service';
 import { CameraProvider } from '../providers/util/camera.provider';
+import { TabsPage } from '../pages/tabs/tabs';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -38,14 +39,14 @@ export function createTranslateLoader(http: HttpClient) {
 
 
 export const firebaseConfig = {
-   // Initialize Firebase
-    apiKey: "AIzaSyC9jVme7JmLg3z0UzFgh4IksGE0IrK2ufY",
-    authDomain: "ledcrew-952c2.firebaseapp.com",
-    databaseURL: "https://ledcrew-952c2.firebaseio.com",
-    projectId: "ledcrew-952c2",
-    storageBucket: "ledcrew-952c2.appspot.com",
-    messagingSenderId: "837206994708"
-};
+  // Initialize Firebase
+  apiKey: "AIzaSyC9jVme7JmLg3z0UzFgh4IksGE0IrK2ufY",
+  authDomain: "ledcrew-952c2.firebaseapp.com",
+  databaseURL: "https://ledcrew-952c2.firebaseio.com",
+  projectId: "ledcrew-952c2",
+  storageBucket: "ledcrew-952c2.appspot.com",
+  messagingSenderId: "837206994708"
+  };
 
 export function provideSettings(storage: Storage) {
   /**
@@ -65,6 +66,7 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [
     MyApp,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    TabsPage
   ],
   providers: [
     Api,

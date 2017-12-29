@@ -16,3 +16,30 @@
 // automatically applied to the <body> element in the app.
 
 
+
+.menux{
+    background-color:rgb(75, 141, 95)
+}
+
+.side-item{
+color:rgba(255,255,255,1);
+font-size:22px;
+border-color:white;
+border:12px;
+background-color:rgb(65, 134, 87);
+//border-radius: 50%;
+width: 100%;
+//height: 1px;
+//position: absolute;
+left: 0;
+bottom: -4px;
+//background: black;
+//border: 3px solid black;
+margin: -5px auto 0;
+z-index: 2;
+}
+ion-item{
+    padding:12px;
+    margin:12px;
+}
+

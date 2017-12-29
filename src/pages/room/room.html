@@ -21,18 +21,6 @@
       </div>
       <div class="content">
           <ion-list>
-            <ion-item>
-              <ion-label floating >Room Type</ion-label>
-              <ion-select [(ngModel)]="user?.dummyRoom.room_type">
-                <ion-option value="office">Office</ion-option>
-                <ion-option value="hall">hall</ion-option>
-                <ion-option value="shop">shop</ion-option>
-                <ion-option value="storage">Storage</ion-option>
-                <ion-option value="toilet">Toilet</ion-option>
-                <ion-option value="kitchen">Kitchen</ion-option>
-                <ion-option value="others">Others</ion-option>
-              </ion-select>
-            </ion-item>
                               <ion-item-divider></ion-item-divider>
 
               <ion-item (click)="navCtrl.push('ExistingFixturePage')">
@@ -40,7 +28,7 @@
                     <ion-icon name="ios-albums-outline"  color="primary"></ion-icon>
                   </ion-avatar>
                   <h2>Fixture  <small *ngIf="user?.dummyRoom"> ( {{user?.dummyRoom.existingFixtures.length}} )</small></h2>
-                  <p>Add Existing Fixture details.</p>
+                  <p style="color:white">Add Existing Fixture details.</p>
                   <ion-icon clear item-end name="ios-arrow-dropright-outline" color="primary"></ion-icon>
                   
                 </ion-item>
