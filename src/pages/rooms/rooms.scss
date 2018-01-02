@@ -1,4 +1,5 @@
 page-rooms {
+  
     @import url(http://weloveiconfonts.com/api/?family=zocial);
     /* zocial */
     [class*="zocial-"]:before {
@@ -16,9 +17,7 @@ page-rooms {
     //     }
     //   }
     // }
-    .header {
-      text-align: center;
-      padding: 40px 30px 0 30px;
+    
       h1,
       h2 {
         font-weight: 300;
@@ -30,7 +29,7 @@ page-rooms {
         margin: 0 0 15px 0;
         color: #00002e;
       }
-    }
+    
     .profile {
       width: 130px;
       height: 130px;
@@ -43,8 +42,9 @@ page-rooms {
       }
     }
     .content {
-      background: #ececec;
-      color: #222b21;
+      
+      background-color:rgba(43, 94, 41, 0.808);
+      color: #ffffff;
       padding: 75px 0 0 0;
       text-align: center;
       //height: auto;

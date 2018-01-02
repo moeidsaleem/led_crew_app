@@ -16,9 +16,7 @@ page-room {
     //     }
     //   }
     // }
-    .header {
-      text-align: center;
-      padding: 40px 30px 0 30px;
+ 
       h1,
       h2 {
         font-weight: 300;
@@ -30,7 +28,7 @@ page-room {
         margin: 0 0 15px 0;
         color: #00002e;
       }
-    }
+    
     .profile {
       width: 130px;
       height: 130px;
@@ -45,8 +43,8 @@ page-room {
     .content {
       background-color:rgb(74, 182, 121);
       color: #fff;
-      padding: 75px 0 0 0;
-      text-align: center;
+      // padding: 75px 0 0 0;
+      // text-align: center;
       //height: auto;
       // p {
       //   padding: 20px 40px;

@@ -20,7 +20,7 @@ import { User } from '../../providers/providers';
 })
 export class WelcomePage {
   public loginForm: any;
-  public backgroundImage = 'assets/img/background/led.jpg';
+  public backgroundImage = 'assets/img/background/background-5.jpg';
   // Our translated text strings
   private loginErrorString: string;
   loading;

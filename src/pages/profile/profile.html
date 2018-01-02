@@ -4,7 +4,60 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+
+<ion-content class="container transparent-header">
+    <ion-header>
+        <ion-navbar>
+            <ion-buttons left>
+                <button ion-button icon-only menuToggle><ion-icon name="menu"></ion-icon></button>
+              </ion-buttons>
+          <ion-title style="text-decoration:italic;font-size:2px;"><small> Profile </small></ion-title>
+        </ion-navbar>
+    </ion-header>
+    <div class="card-profile">
+      <div class="card-profile_visual"></div>
+      <div class="card-profile_user-infos">
+        <span class="infos_name">Moeid Saleem</span>
+        <span class="infos_nick">Atrix Digital Solutions</span>
+        <a href="#"></a>
+      </div>
+      <div class="card-profile_user-stats">
+        <div class="stats-holder">
+          <!-- <div class="user-stats">
+            <strong>Tweets</strong>
+            <span>{{user.tweets}}</span>
+          </div> -->
+          <div class="user-stats">
+            <strong>Following</strong>
+            <span>3K</span>
+          </div>
+          <div class="user-stats">
+            <strong>Followers</strong>
+            <span>12.4k</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-profile_user-stats">
+          <div class="stats-holder">
+            <!-- <div class="user-stats">
+              <strong>Tweets</strong>
+              <span>{{user.tweets}}</span>
+            </div> -->
+            <div class="user-stats">
+              <div>16,50</div>
+              <small>Evaluations</small>
+            </div>
+            <div class="user-stats">
+              <strong>Made paris Factory evaluation most recently.</strong>
+            </div>
+          </div>
+        </div>
+    
+    </div>
+  </ion-content>
+  
+
+<!-- <ion-header>
 
   <ion-navbar color="primary">
     <ion-title>profile</ion-title>
@@ -26,9 +79,7 @@
         <h3 id="profile-name">{{user._user?.name}}</h3>
         <p>{{user._user?.position}} &bull; {{user._user?.state}}, {{user._user?.country}}</p>
         <p class="profile-description">{{user._user?.info}}</p>
-        <!-- <button ion-button *ngIf="!following" small color="purple" (click)="follow()">Follow</button>
-        <button ion-button *ngIf="following" class="follow-button" small color="purple" (click)="follow()">Following<ion-icon name="checkmark"></ion-icon></button> -->
-      </div>
+     </div>
       <hr/>
       <ion-row class="profile-numbers">
         <ion-col col-4>
@@ -54,7 +105,6 @@
             <h3 class="sticky">{{post.location_info.business_name}} - <small>( {{post.location_info.type}} )</small></h3>
             <p>{{post.location_info.date}}</p>
           </ion-item>
-          <!-- <img [src]="post.img" (click)="imageTapped(post)"> -->
           <ion-card-content>
               <p><ion-icon name="ios-albums-outline"></ion-icon> <strong>{{post.rooms.length}} </strong> room<span *ngIf="post.rooms.length>0">s</span></p>
               <p><ion-icon name="ios-construct-outline"></ion-icon> <strong>{{post.location_info.type}} </strong> Type</p>
@@ -66,7 +116,6 @@
             <ion-col col-4>
               <button margin padding ion-button color="primary" clear small icon-left (click)="like(post)">
                   <ion-icon name='ios-person-outline'></ion-icon>
-                  <!-- {{post.rooms.length}} Rooms |  -->
                 <small>{{post.location_info.person}} </small>
                 </button>
             </ion-col>
@@ -85,5 +134,5 @@
         </ion-card>
       </div>
     </div>
-  </ion-content>
+  </ion-content> -->
   
