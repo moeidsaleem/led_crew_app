@@ -1,8 +1,4 @@
-# Language Learning Ionic App
+# LED CREW Application
 
 
-- pager
-- Firebase Auth
-- user profiling
-- Firebase database view
-- Firebase storage
+Complete Firestore applicaiton for managing location evalutions for bulbs. 
